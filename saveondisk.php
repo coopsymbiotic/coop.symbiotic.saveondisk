@@ -167,8 +167,19 @@ function saveondisk_civicrm_buildForm($formName, &$form) {
       $filename = $path . '/instance-' . $vars['instanceId'] . '.csv';
       $success = file_put_contents($filename, $csv);
 
-      if (!$success) {
+      if ($success) {
+        CRM_Core_Session::setStatus(ts("The report has been saved on disk as %1", [
+          1 => 'instance-' . $vars['instanceId'] . '.csv',
+          'domain' => 'coop.symbiotic.saveondisk',
+        ]), '', 'success');
+      }
+      else {
         Civi::log()->warning("Failed saving a report to $filename");
+
+        CRM_Core_Session::setStatus(ts("Failed to save report on disk as %1. Check the directory permissions?", [
+          1 => 'instance-' . $vars['instanceId'] . '.csv',
+          'domain' => 'coop.symbiotic.saveondisk',
+        ]), '', 'error');
       }
     }
   }
