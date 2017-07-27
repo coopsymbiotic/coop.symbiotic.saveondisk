@@ -4,6 +4,9 @@ Save on Disk
 This extension adds the possibility to save CiviCRM reports directly on
 the disk.
 
+The files are saved in the "user files" directory, which should be:  
+`civicrm/custom/reports/instance-XX.csv`, where `XX` is the report instance.
+
 To download the latest version of this module:  
 https://github.com/coopsymbiotic/coop.symbiotic.saveondisk
 
